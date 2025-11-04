@@ -1,0 +1,27 @@
+<div class="general">
+  <div class="general__menu">
+    <a routerLink="basica">
+      <div class="general__menu-item" routerLinkActive="general__menu-item--selected"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Básica
+      </div>
+    </a>
+    <a routerLink="contato">
+      <div class="general__menu-item" routerLinkActive="general__menu-item--selected"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Contato
+      </div>
+    </a>
+    <a routerLink="endereco">
+      <div class="general__menu-item" routerLinkActive="general__menu-item--selected"
+        [routerLinkActiveOptions]="{ exact: true }">
+        Endereço
+      </div>
+    </a>
+  </div>
+  <div class="general__content">
+    <div class="general-informations">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
