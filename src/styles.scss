@@ -37,28 +37,52 @@ a {
 
 .card {
   width: 90%;
-  max-width: 1024px;
   height: 80vh;
   display: flex;
   overflow: hidden;
+  max-width: 1024px;
 
-  backdrop-filter: blur(23px) saturate(200%);
-  -webkit-backdrop-filter: blur(23px) saturate(200%);
-  background-color: rgba(17, 25, 40, 0.46);
+  @media(max-width: 768px) {
+    flex-direction: column;
+  }
+
   border-radius: 12px;
+  background-color: rgba(17, 25, 40, 0.46);
+  backdrop-filter: blur(23px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.125);
+  -webkit-backdrop-filter: blur(23px) saturate(200%);
 
   &__side-menu {
     width: 20%;
     padding: 50px 10px;
     border-right: 1px solid rgb(255 255 255 / 13%);
-    // background-color: orange;
   }
 
   &__content {
     width: 80%;
-    padding: 25px 0px 0px 0px;
-    // background-color: blue;
+  }
+
+  &__top-menu {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    &__side-menu {
+      display: none;
+    }
+
+    &__content {
+      width: 100%;
+      height: 100%;
+      padding-top: 10px;
+    }
+
+    &__top-menu {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      border-bottom: 1px solid rgb(255 255 255 / 13%);
+    }
   }
 }
 
@@ -77,6 +101,10 @@ a {
 
     transition: all .2s;
 
+    @media (max-width: 768px) {
+      padding: 10px 25px;
+    }
+
     &:hover {
       transition: all .2s;
       background-color: rgb(38 38 38 / 15%);
@@ -94,20 +122,23 @@ a {
 }
 
 .start {
-  width: 80%;
+  gap: 20px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   align-items: center;
-  margin: 0 auto;
+  justify-content: center;
 
   &__card {
+    display: flex;
+    height: 190px;
     padding: 20px;
     border-radius: 10px;
+    justify-content: space-around;
+    flex-direction: column;
     background-color: rgb(82 82 82 / 23%);
     max-width: 240px;
-    max-height: 170px;
     text-align: center;
     transition: .3s ease-out;
 
@@ -120,12 +151,12 @@ a {
   &__card-title {
     font-size: 15px;
     font-weight: 600;
-    color: #000000b8;
+    color: #d9d9d9;
   }
 
   &__card-text {
     font-size: 11px;
-    color: #000000ba;
+    color: #d9d9d9;
     margin: 10px;
   }
 
@@ -135,7 +166,7 @@ a {
     border-radius: 5px;
     background-color: rgb(255 139 47 / 67%);
     font-size: 14px;
-    color: white;
+    color: #d9d9d9;
     letter-spacing: .5px;
     cursor: pointer;
   }
@@ -154,9 +185,13 @@ a {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding-top: 30px;
+    padding-top: 10px;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+
+    @media(max-width: 768px) {
+      padding: 0px;
+    }
   }
 
   &__menu-item {
@@ -243,11 +278,7 @@ a {
     height: 100%;
     display: flex;
     justify-content: center;
-  }
-
-  &__items-group {
-    width: 100%;
-    padding-top: 30px;
+    overflow-y: auto;
     background-color: rgb(82 82 82 / 23%);
     transition: .3s ease-out;
 
@@ -257,8 +288,14 @@ a {
     }
   }
 
+  &__items-group {
+    width: 100%;
+    height: 100%;
+    padding-top: 15px;
+  }
+
   &__item {
-    padding: 0px 10px;
+    padding: 17px 10px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -306,10 +343,14 @@ a {
 
   .card-group-left {
     position: absolute;
-    top: 42px;
+    top: 52px;
     left: 11%;
     transform: rotate(350deg);
     z-index: 0;
+
+    @media (max-width: 768px) {
+      left: 15%;
+    }
 
     &--selected {
       z-index: 1;
@@ -318,10 +359,14 @@ a {
 
   .card-group-right {
     position: absolute;
-    top: 42px;
+    top: 72px;
     right: 20%;
     transform: rotate(350deg);
     z-index: 0;
+
+    @media (max-width: 768px) {
+      right: 23%;
+    }
 
     &--selected {
       z-index: 1;
@@ -338,6 +383,11 @@ a {
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     cursor: pointer;
+
+    @media (max-width:768px) {
+      left: 15px;
+      width: 290px;
+    }
 
     &--credit {
       background-image: linear-gradient(109.6deg, rgb(62 161 219 / 65%) 11.2%, rgb(93 52 236 / 65%) 100.2%);
