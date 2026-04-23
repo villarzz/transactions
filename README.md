@@ -1,55 +1,57 @@
-# Users List
+# Transactions
 
 ## 🎯 Sobre o Projeto
 
 **Este é um projeto de estudo focado no sistema de rotas do Angular.**
 
-Users List é uma aplicação web desenvolvida em Angular 17 que consome a [JSONPlaceholder API](https://jsonplaceholder.typicode.com/) para exibir informações de usuários e seus respectivos conteúdos. A aplicação oferece uma interface moderna e responsiva construída com Tailwind CSS, permitindo navegar entre diferentes usuários e visualizar suas tarefas (todos), posts e álbuns.
+Transactions é uma aplicação web desenvolvida em Angular 17 que simula um painel bancário pessoal. A aplicação permite visualizar informações cadastrais do usuário e o extrato de transações dos cartões de crédito e débito, com uma interface navegável e responsiva construída com SCSS e Material Symbols.
 
 ### 🛣️ Sistema de Roteamento - Nível Intermediário/Avançado
 
 O projeto demonstra o uso de técnicas **intermediárias a avançadas** do sistema de rotas do Angular, incluindo:
 
 - **Lazy Loading**: Carregamento sob demanda de componentes com `loadComponent` e `loadChildren` para otimização de performance
-- **Rotas Aninhadas**: Estrutura de rotas pai-filho no componente user-area com múltiplos outlets
-- **Parâmetros de Rota**: Uso de parâmetros dinâmicos (`user-area/:userId`) com binding automático via `withComponentInputBinding()`
-- **Redirects e Navegação**: Configuração de redirecionamentos padrão e rotas vazias
+- **Rotas Aninhadas**: Estrutura de rotas pai-filho nas seções Geral e Transações com `<router-outlet>` secundário
+- **Redirects e Navegação**: Configuração de redirecionamentos padrão em rotas vazias
 - **Componentes Standalone**: Implementação moderna com lazy loading de componentes standalone do Angular 17
-- **Code Splitting**: Organização modular com arquivos de rotas separados para melhor manutenibilidade
+- **Code Splitting**: Arquivos de rotas separados (`geral.routes.ts` e `transacoes.routes.ts`) para melhor manutenibilidade
+- **RouterLinkActive**: Destaque visual automático de itens de menu conforme a rota ativa
 
 ## ✨ Funcionalidades
 
-- 📋 **Lista de Usuários**: Visualize todos os usuários cadastrados com suas informações básicas
-- ✅ **Gerenciamento de Tarefas**: Acompanhe as tarefas (todos) de cada usuário
-- 📝 **Posts**: Leia os posts publicados pelos usuários
-- 🖼️ **Álbuns**: Navegue pelos álbuns de fotos dos usuários
-- 🎨 **Interface Moderna**: Design responsivo e elegante com Tailwind CSS
-- 🔄 **Navegação Fluida**: Sistema de rotas com Angular Router
+- 🏠 **Início**: Tela inicial com acesso rápido às seções principais
+- 👤 **Informações Gerais**: Dados cadastrais do usuário organizados em sub-abas:
+  - **Básica** – Nome, data de nascimento, gênero e nacionalidade
+  - **Contato** – Informações de contato
+  - **Endereço** – Endereço do usuário
+- 💳 **Transações**: Extrato de movimentações financeiras por tipo de cartão:
+  - **Crédito** – Entradas no cartão de crédito
+  - **Débito** – Saídas no cartão de débito
+- 🔄 **Navegação Fluida**: Menu lateral (desktop) e menu superior (mobile) com Angular Router
 - 🚀 **Componentes Standalone**: Arquitetura moderna do Angular 17
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **[Angular](https://angular.io/)** v17.3.0 - Framework principal
 - **[TypeScript](https://www.typescriptlang.org/)** - Linguagem de programação
-- **[Tailwind CSS](https://tailwindcss.com/)** v3.4.18 - Framework CSS
+- **[SCSS](https://sass-lang.com/)** - Estilização dos componentes
 - **[RxJS](https://rxjs.dev/)** - Programação reativa
-- **[Heroicons](https://heroicons.com/)** - Ícones SVG
-- **[JSONPlaceholder API](https://jsonplaceholder.typicode.com/)** - API de dados fake
+- **[Material Symbols](https://fonts.google.com/icons)** - Ícones da interface
 
 ## 📦 Instalação
 
 ### Pré-requisitos
 
 - Node.js (versão 18 ou superior)
-- npm ou yarn
+- npm
 - Angular CLI
 
 ### Passos para instalação
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/villarzz/users-list.git
-cd users-list
+git clone https://github.com/villarzz/transactions.git
+cd transactions
 ```
 
 2. Instale as dependências:
@@ -106,34 +108,31 @@ ng build --watch --configuration development
 ## 📁 Estrutura do Projeto
 
 ```
-users-list/
+transactions/
 ├── src/
 │   ├── app/
 │   │   ├── components/
-│   │   │   ├── users-list/      # Lista principal de usuários
-│   │   │   └── user-area/       # Área detalhada do usuário
-│   │   │       └── components/
-│   │   │           ├── todos/   # Tarefas do usuário
-│   │   │           ├── posts/   # Posts do usuário
-│   │   │           └── albuns/  # Álbuns do usuário
-│   │   ├── services/            # Serviços HTTP
-│   │   ├── interfaces/          # Interfaces TypeScript
-│   │   ├── types/               # Tipos customizados
-│   │   └── pipes/               # Pipes personalizados
-│   ├── assets/                  # Recursos estáticos
-│   └── styles.css              # Estilos globais
-├── angular.json                 # Configuração do Angular
-├── tailwind.config.js          # Configuração do Tailwind
-└── package.json                # Dependências do projeto
+│   │   │   ├── inicio/              # Tela inicial
+│   │   │   ├── geral/               # Informações gerais do usuário
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── basica/      # Dados básicos
+│   │   │   │   │   ├── contato/     # Contato
+│   │   │   │   │   └── endereco/    # Endereço
+│   │   │   │   └── geral.routes.ts  # Rotas filhas de Geral
+│   │   │   ├── transacoes/          # Transações financeiras
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── credit/      # Extrato de crédito
+│   │   │   │   │   └── debit/       # Extrato de débito
+│   │   │   │   └── transacoes.routes.ts  # Rotas filhas de Transações
+│   │   │   └── not-found/           # Página 404
+│   │   ├── app.component.ts         # Componente raiz com menu de navegação
+│   │   ├── app.routes.ts            # Rotas principais
+│   │   └── app.config.ts            # Configuração da aplicação
+│   ├── assets/                      # Recursos estáticos
+│   └── styles.scss                  # Estilos globais
+├── angular.json                     # Configuração do Angular CLI
+└── package.json                     # Dependências do projeto
 ```
-
-## 🎨 Recursos Visuais
-
-A aplicação utiliza um design moderno com:
-- Efeito de blur e transparência no container principal
-- Sistema de cores baseado em zinc/cinza
-- Layout responsivo e centralizado
-- Ícones do Heroicons para melhor UX
 
 ## 🤝 Contribuindo
 
@@ -142,7 +141,3 @@ Contribuições são sempre bem-vindas! Sinta-se à vontade para abrir issues e 
 ## 📄 Licença
 
 Este projeto foi criado com [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
-
-## 📞 Contato
-
-Para mais informações sobre o Angular CLI, use `ng help` ou visite a [documentação oficial do Angular CLI](https://angular.io/cli).
